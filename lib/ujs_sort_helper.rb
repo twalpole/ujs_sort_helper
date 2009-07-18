@@ -84,7 +84,8 @@ module UjsSortHelper
   # Use this to sort the controller's table items collection.
   #
   def sort_clause()
-    session[@sort_name][:key] + ' ' + session[@sort_name][:order]
+    result = session[@sort_name][:key] + ' ' + session[@sort_name][:order]
+    result if result =~ /^[\w_]+ (asc|desc)$/i  # Validate sort.    
   end
 
   # Returns a link which sorts by the named column.
